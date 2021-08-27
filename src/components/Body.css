@@ -1,0 +1,27 @@
+.headding {
+  color: #252628;
+  font-family: "ProximaNova ExtraBold", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 56px;
+}
+.subheadding {
+  color: #56575b;
+  font-family: "ProximaNova Regular", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+}
+.largebutton {
+  font-size: 20px;
+  line-height: 1.11;
+  padding: 18px 30px;
+  background: #2a5bd7;
+  border-radius: 6px;
+  text-decoration: none;
+  outline: none !important;
+}
+.footer {
+  background-color: #0b1736;
+}
