@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
 import axios from "axios";
-
-/** imported components */
 import img1 from "../assets/img1.svg";
 
 /** import from materail ui */

@@ -1,13 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import ParticleBackground from "./ParticleBackground";
-
 import astronaut from "../assets/astronaut.svg";
 import planet from "../assets/planet.svg";
-/** imported components */
 import "./Pagefournotfour.css";
-
-/** import from materail ui */
+import ParticleBackground from "./ParticleBackground";
+import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 function ErrorPage() {

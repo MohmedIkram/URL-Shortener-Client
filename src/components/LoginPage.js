@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-
-/** imported components */
 import img3 from "../assets/img3.svg";
 
 /** import from materail ui */
@@ -72,7 +70,7 @@ export default function LoginPage() {
         // return  response;
         localStorage.setItem("auth", JSON.stringify(response.data));
         const token = localStorage.getItem("token");
-        history.push(`/UrlShort`);
+        history.push(`/forgot-password`);
       })
       .catch((error) => {
         //return  error;

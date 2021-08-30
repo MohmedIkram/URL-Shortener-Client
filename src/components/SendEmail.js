@@ -1,7 +1,5 @@
 import * as React from "react";
 import axios from "axios";
-
-/** imported components */
 import img2 from "../assets/img2.svg";
 
 /** import from materail ui */
