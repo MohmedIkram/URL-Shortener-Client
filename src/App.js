@@ -1,9 +1,12 @@
 import "./App.css";
-import Body from "./components/body";
-import Login from "./components/Login";
+import Body from "./components/Body";
+import LoginPage from "./components/LoginPage";
 import SignUp from "./components/SignUp";
 import UrlShort from "./components/UrlShort";
+import SendEmail from "./components/SendEmail";
+import ResetPassword from "./components/ResetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ErrorPage from "./components/Pagefournotfour";
 function App() {
   return (
     <div className="App">
@@ -13,16 +16,22 @@ function App() {
             <Body />
           </Route>
           <Route path="/login">
-            <Login />
+            <LoginPage />
           </Route>
           <Route path="/signUp">
             <SignUp />
           </Route>
+          <Route exact path="/forgot-password">
+            <SendEmail />
+          </Route>
+          <Route exact path="/ResetPassword/:resetToken">
+            <ResetPassword />
+          </Route>
           <Route path="/UrlShort">
-            <UrlShort
-            // formName="Sample Form Submit"
-            // formDescription="This is sample form using Material UI."
-            />
+            <UrlShort />
+          </Route>
+          <Route path="/*">
+            <ErrorPage />
           </Route>
         </Switch>
       </Router>

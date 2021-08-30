@@ -1,5 +1,7 @@
 import * as React from "react";
 import axios from "axios";
+
+/** imported components */
 import img2 from "../assets/img2.svg";
 
 /** import from materail ui */
@@ -11,9 +13,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import { MailOutline } from "@material-ui/icons";
-
-import dotenv from "dotenv";
-dotenv.config();
 
 const styles = () => ({
   container: {
