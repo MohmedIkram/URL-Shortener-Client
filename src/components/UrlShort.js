@@ -52,8 +52,8 @@ const useStyles = makeStyles((theme) => ({
 function UrlShort() {
   return (
     <div>
-      <ParticleBackground />
       <UrlTable />
+      {/* <ParticleBackground /> */}
     </div>
   );
 }
@@ -69,16 +69,22 @@ function UrlTable() {
     const myData = {
       FullUrl,
     };
-    axios.post(`http://localhost:5000/url/Fullurl/`, myData);
-    axios.get(`http://localhost:5000/url/Fullurl/`).then((response) => {
-      setData(response);
-      console.log(response);
-    });
+    axios.post(
+      `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`,
+      myData
+    );
   };
+  async function Urldata() {
+    const response = await axios.get(
+      `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`
+    );
+    setData(response);
+    console.log(response);
+  }
 
-  // useEffect(() => {
-  //   Data();
-  // }, []);
+  useEffect(() => {
+    Urldata();
+  }, []);
 
   return (
     <div className="App">
@@ -133,11 +139,13 @@ function UrlTable() {
           </TableHead>
           <TableBody>
             <TableRow>
-              {/* {Data.map((e) => {
-                <TableCell component="th" scope="row">
-                  {e.data.FullUrl}
-                </TableCell>;
-              })} */}
+              {Data.map((e) => {
+                return (
+                  <TableCell component="th" scope="row">
+                    {e.data.FullUrl}
+                  </TableCell>
+                );
+              })}
 
               <TableCell align="right">hello</TableCell>
               <TableCell align="right">

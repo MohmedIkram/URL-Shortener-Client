@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +49,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [data, setData] = useState([]);
+
   // const handleSubmit = () => {
   //   const myData = {
   //     email,
@@ -65,12 +68,15 @@ export default function LoginPage() {
       password,
     };
     axios
-      .post(`https://password-reset-guvi.herokuapp.com/users/login`, myData)
+      .post(
+        `https://url-shortener-server-guvi.herokuapp.com/users/login`,
+        myData
+      )
       .then((response) => {
         // return  response;
         localStorage.setItem("auth", JSON.stringify(response.data));
         const token = localStorage.getItem("token");
-        history.push(`/forgot-password`);
+        history.push(`/UrlShort`);
       })
       .catch((error) => {
         //return  error;

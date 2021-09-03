@@ -55,7 +55,7 @@ export default function SignUp() {
       password,
     };
     axios.post(
-      `https://password-reset-guvi.herokuapp.com/users/signup`,
+      `https://url-shortener-server-guvi.herokuapp.com/users/signup`,
       myData
     );
     History.push("/");

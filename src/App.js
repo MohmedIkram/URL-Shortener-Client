@@ -7,6 +7,7 @@ import SendEmail from "./components/SendEmail";
 import ResetPassword from "./components/ResetPassword";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ErrorPage from "./components/Pagefournotfour";
+
 function App() {
   return (
     <div className="App">
