@@ -80,7 +80,7 @@ export default function LoginPage() {
       })
       .catch((error) => {
         //return  error;
-        history.push(`/`);
+        history.push(`/login`);
       });
   };
 

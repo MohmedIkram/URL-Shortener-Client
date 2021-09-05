@@ -17,6 +17,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { makeStyles } from "@material-ui/core/styles";
+import { ParticlesOptions } from "tsparticles/Options/Classes/Particles/ParticlesOptions";
 
 const useStyles = makeStyles((theme) => ({
   searchcontainer: {
@@ -57,32 +58,37 @@ function UrlShort() {
     </div>
   );
 }
-function UrlTable() {
+function UrlTable(props) {
   const classes = useStyles();
   const UrlData = (e) => setFullUrl(e.target.value);
   const [FullUrl, setFullUrl] = useState();
   const [Data, setData] = useState([]);
   const history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  console.log(Data.data);
+
+  // send fullurl when button is pressed
+  async function handleSubmit(e) {
+    // e.preventDefault();
     const myData = {
       FullUrl,
     };
-    axios.post(
+    await axios.post(
       `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`,
       myData
     );
-  };
+  }
+
   async function Urldata() {
     const response = await axios.get(
       `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`
     );
     setData(response);
-    console.log(response);
+    // console.log(response.data);
   }
 
   useEffect(() => {
+    handleSubmit();
     Urldata();
   }, []);
 
@@ -131,9 +137,9 @@ function UrlTable() {
                 </Typography>
               </TableCell>
               <TableCell align="right">
-                {/* <Typography variant="h5" component="h2">
+                <Typography variant="h5" component="h2">
                   Copy
-                </Typography> */}
+                </Typography>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -142,17 +148,16 @@ function UrlTable() {
               {Data.map((e) => {
                 return (
                   <TableCell component="th" scope="row">
-                    {e.data.FullUrl}
+                    {e.FullUrl}
                   </TableCell>
                 );
               })}
 
               <TableCell align="right">hello</TableCell>
               <TableCell align="right">
-                {" "}
                 <Button variant="contained" color="secondary">
                   Copy link
-                </Button>{" "}
+                </Button>
               </TableCell>
             </TableRow>
           </TableBody>
