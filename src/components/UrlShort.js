@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import ParticleBackground from "./ParticleBackground";
 
 /** import from materail ui */
 import Button from "@material-ui/core/Button";
@@ -17,7 +16,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { makeStyles } from "@material-ui/core/styles";
-import { ParticlesOptions } from "tsparticles/Options/Classes/Particles/ParticlesOptions";
+import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   searchcontainer: {
@@ -50,15 +49,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UrlShort() {
-  return (
-    <div>
-      <UrlTable />
-      {/* <ParticleBackground /> */}
-    </div>
-  );
-}
-function UrlTable(props) {
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
+
+function UrlShort(props) {
   const classes = useStyles();
   const UrlData = (e) => setFullUrl(e.target.value);
   const [FullUrl, setFullUrl] = useState();
@@ -83,9 +92,11 @@ function UrlTable(props) {
     const response = await axios.get(
       `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`
     );
-    setData(response);
+    setData(response.data);
     // console.log(response.data);
   }
+
+  const OpenShortUrl = (e) => {};
 
   useEffect(() => {
     handleSubmit();
@@ -119,47 +130,69 @@ function UrlTable(props) {
 
       {/* table */}
 
-      <TableContainer
-        // component={Paper}
-        className={classes.searchcontainertable}
-      >
-        <Table classLongUrl={classes.table} aria-label="simple table">
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <TableCell>
+              <StyledTableCell>
                 <Typography variant="h5" component="h2">
                   Long-FullUrl
                 </Typography>
-              </TableCell>
-              <TableCell align="right">
+              </StyledTableCell>
+              <StyledTableCell align="right">
                 <Typography variant="h5" component="h2">
                   Short-FullUrl
                 </Typography>
-              </TableCell>
-              <TableCell align="right">
+              </StyledTableCell>
+              <StyledTableCell align="right">
                 <Typography variant="h5" component="h2">
-                  Copy
+                  Share
                 </Typography>
-              </TableCell>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              {Data.map((e) => {
-                return (
-                  <TableCell component="th" scope="row">
+            {/* {Data.filter((item) => {
+              if (search == "") {
+                return item;
+              } else if (
+                item.name.toLowerCase().includes(search.toLowerCase())
+              ) {
+                return item;
+              }
+            }).map((item) => {
+              return (
+                <StyledTableRow key={item.id}>
+                  <StyledTableCell component="th" scope="row">
+                    {item.name}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{item.price}</StyledTableCell>
+                </StyledTableRow>
+              );
+            })} */}
+            {Data.map((e) => {
+              return (
+                <StyledTableRow key={e.id}>
+                  <StyledTableCell component="th" scope="row">
                     {e.FullUrl}
-                  </TableCell>
-                );
-              })}
-
-              <TableCell align="right">hello</TableCell>
-              <TableCell align="right">
-                <Button variant="contained" color="secondary">
-                  Copy link
-                </Button>
-              </TableCell>
-            </TableRow>
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    <Link variant="body2" to={`${e.shortUrl}`}>
+                      {e.shortUrl}
+                    </Link>
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={OpenShortUrl}
+                    >
+                      Share link
+                    </Button>
+                  </StyledTableCell>
+                </StyledTableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

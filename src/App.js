@@ -31,6 +31,13 @@ function App() {
           <Route path="/UrlShort">
             <UrlShort />
           </Route>
+          <Route path="/UrlShort">
+            <UrlShort />
+          </Route>
+          <Route path="/:shortUrl">
+            <ResetPassword />
+          </Route>
+
           <Route path="/*">
             <ErrorPage />
           </Route>
