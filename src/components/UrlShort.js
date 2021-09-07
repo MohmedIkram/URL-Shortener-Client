@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 /** import from materail ui */
@@ -17,6 +17,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
   searchcontainer: {
@@ -96,7 +97,15 @@ function UrlShort(props) {
     // console.log(response.data);
   }
 
-  const OpenShortUrl = (e) => {};
+  async function OpenShortUrl(e) {
+    const myData = {
+      FullUrl,
+    };
+    await axios.post(
+      `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`,
+      myData
+    );
+  }
 
   useEffect(() => {
     handleSubmit();
@@ -177,7 +186,7 @@ function UrlShort(props) {
                     {e.FullUrl}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    <Link variant="body2" to={`${e.shortUrl}`}>
+                    <Link href={`${e.FullUrl}`} target="_blank">
                       {e.shortUrl}
                     </Link>
                   </StyledTableCell>
