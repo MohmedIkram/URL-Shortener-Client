@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 
 /** import from materail ui */
@@ -74,6 +74,7 @@ function UrlShort(props) {
   const [FullUrl, setFullUrl] = useState();
   const [Data, setData] = useState([]);
   const history = useHistory();
+  const shortUrl = useLocation();
 
   console.log(Data.data);
 
@@ -98,12 +99,8 @@ function UrlShort(props) {
   }
 
   async function OpenShortUrl(e) {
-    const myData = {
-      FullUrl,
-    };
-    await axios.post(
-      `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`,
-      myData
+    await axios.get(
+      `https://url-shortener-server-guvi.herokuapp.com/url/${shortUrl}`
     );
   }
 
