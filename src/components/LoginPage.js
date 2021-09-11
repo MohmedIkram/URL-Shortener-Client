@@ -67,25 +67,15 @@ export default function LoginPage() {
       email,
       password,
     };
-    const getData = JSON.parse(localStorage.getItem("auth"));
-    // console.log(getData.token);
+
     const API_URL = "https://url-shortener-server-guvi.herokuapp.com";
-    const LOCAL_URL = "http://localhost:5000/users/login";
+    // const LOCAL_URL = "http://localhost:5000/users/login";
+
     axios
-      .post(
-        `${API_URL}`,
-        // `${LOCAL_URL}`,
-        myData,
-        {
-          headers: {
-            authorization: getData.token,
-            Accept: "application/json",
-          },
-        }
-      )
+      .post(`${API_URL}`, myData)
       .then((response) => {
         // return  response;
-        // localStorage.setItem("auth", JSON.stringify(response.data));
+        localStorage.setItem("x-auth-token", JSON.stringify(response.data));
         // const token = localStorage.getItem("token");
         history.push(`/UrlShort`);
       })

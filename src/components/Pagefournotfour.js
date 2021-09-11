@@ -24,8 +24,8 @@ function Pagefournotfour() {
           LOST IN <span>SPACE</span> Url-Shortener? Hmm, looks like that page
           doesn't exist.
         </h3>
-        <img id="astronaut" src={astronaut} />
-        <img id="planet" src={planet} />
+        <img id="astronaut" src={astronaut} alt="astronaut " />
+        <img id="planet" src={planet} alt="planet " />
         <Button color="inherit" class="denied__link" component={Link} to="/">
           Go Home
         </Button>

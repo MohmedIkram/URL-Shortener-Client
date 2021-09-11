@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, useParams, useLocation } from "react-router-dom";
+// import { useHistory, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
 /** import from materail ui */
@@ -93,7 +93,13 @@ function UrlShort(props) {
   }
 
   async function Urldata() {
-    const response = await axios.get(`${API_URL}/Fullurl/`);
+    const getData = JSON.parse(localStorage.getItem("x-auth-token"));
+    const response = await axios.get(`${API_URL}/Fullurl/`, {
+      headers: {
+        auth: getData.token,
+        Accept: "application/json",
+      },
+    });
     setData(response.data);
     // console.log(response.data);
   }
