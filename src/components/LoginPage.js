@@ -67,15 +67,21 @@ export default function LoginPage() {
       email,
       password,
     };
+    const getData = JSON.parse(localStorage.getItem("auth"));
     axios
       .post(
         `https://url-shortener-server-guvi.herokuapp.com/users/login`,
-        myData
+        myData,
+        {
+          headers: {
+            authorization: getData.token,
+          },
+        }
       )
       .then((response) => {
         // return  response;
-        localStorage.setItem("auth", JSON.stringify(response.data));
-        const token = localStorage.getItem("token");
+        // localStorage.setItem("auth", JSON.stringify(response.data));
+        // const token = localStorage.getItem("token");
         history.push(`/UrlShort`);
       })
       .catch((error) => {
