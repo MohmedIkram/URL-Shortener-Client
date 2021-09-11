@@ -60,7 +60,7 @@ function ResetPassword({ classes, token }) {
         `https://password-reset-guvi.herokuapp.com/users/reset-password/${token}`,
         myData
       );
-      console.log(token);
+      // console.log(token);
       setDone(true);
     }
   };
