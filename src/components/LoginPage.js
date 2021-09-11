@@ -68,7 +68,7 @@ export default function LoginPage() {
       password,
     };
 
-    const API_URL = "https://url-shortener-server-guvi.herokuapp.com";
+    const API_URL = "https://url-shortener-server-guvi.herokuapp.com/users";
     // const LOCAL_URL = "http://localhost:5000/users/login";
 
     axios
