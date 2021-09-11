@@ -75,6 +75,7 @@ function UrlShort(props) {
   const [FullUrl, setFullUrl] = useState();
   const [Data, setData] = useState([]);
   const UrlData = (e) => setFullUrl(e.target.value);
+  const API_URL = "https://url-shortener-server-guvi.herokuapp.com/url";
 
   // const shortUrl = useParams();
   // const shortUrldata = useParams();
@@ -88,16 +89,11 @@ function UrlShort(props) {
     const myData = {
       FullUrl,
     };
-    await axios.post(
-      `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`,
-      myData
-    );
+    await axios.post(`${API_URL}/Fullurl/`, myData);
   }
 
   async function Urldata() {
-    const response = await axios.get(
-      `https://url-shortener-server-guvi.herokuapp.com/url/Fullurl/`
-    );
+    const response = await axios.get(`${API_URL}/Fullurl/`);
     setData(response.data);
     // console.log(response.data);
   }
@@ -193,10 +189,7 @@ function UrlShort(props) {
                     {e.FullUrl}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    <Link
-                      target="_blank"
-                      href={`https://url-shortener-server-guvi.herokuapp.com/url/${e.shortUrl}`}
-                    >
+                    <Link target="_blank" href={`${API_URL}/${e.shortUrl}`}>
                       {e.shortUrl}
                     </Link>
                   </StyledTableCell>
@@ -205,7 +198,7 @@ function UrlShort(props) {
                       variant="contained"
                       color="secondary"
                       target="_blank"
-                      href={`https://url-shortener-server-guvi.herokuapp.com/url/${e.shortUrl}`}
+                      href={`${API_URL}/${e.shortUrl}`}
                       title=" Share link"
                     >
                       Share link <ShareIcon />
@@ -218,7 +211,7 @@ function UrlShort(props) {
                       title=" Copy Link to clipboard"
                       onClick={() =>
                         navigator.clipboard.writeText(
-                          `https://url-shortener-server-guvi.herokuapp.com/url/${e.shortUrl}`
+                          `${API_URL}/${e.shortUrl}`
                         )
                       }
                     >
