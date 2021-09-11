@@ -72,7 +72,7 @@ export default function LoginPage() {
     // const LOCAL_URL = "http://localhost:5000/users/login";
 
     axios
-      .post(`${API_URL}`, myData)
+      .post(`${API_URL}/login`, myData)
       .then((response) => {
         // return  response;
         localStorage.setItem("x-auth-token", JSON.stringify(response.data));
