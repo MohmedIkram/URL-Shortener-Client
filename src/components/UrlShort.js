@@ -72,15 +72,14 @@ const StyledTableRow = withStyles((theme) => ({
 
 function UrlShort(props) {
   const classes = useStyles();
-  const UrlData = (e) => setFullUrl(e.target.value);
   const [FullUrl, setFullUrl] = useState();
   const [Data, setData] = useState([]);
+  const UrlData = (e) => setFullUrl(e.target.value);
 
   // const shortUrl = useParams();
   // const shortUrldata = useParams();
   // console.log(shortUrldata);
-  const { shortUrl } = useLocation();
-
+  // const { shortUrl } = useLocation();
   // console.log(Data.data);
 
   // send fullurl when button is pressed
@@ -196,7 +195,7 @@ function UrlShort(props) {
                   <StyledTableCell align="right">
                     <Link
                       target="_blank"
-                      href={`http://localhost:5000/url/${e.shortUrl}`}
+                      href={`https://url-shortener-server-guvi.herokuapp.com/url/${e.shortUrl}`}
                     >
                       {e.shortUrl}
                     </Link>
@@ -206,7 +205,8 @@ function UrlShort(props) {
                       variant="contained"
                       color="secondary"
                       target="_blank"
-                      href={`http://localhost:5000/url/${e.shortUrl}`}
+                      href={`https://url-shortener-server-guvi.herokuapp.com/url/${e.shortUrl}`}
+                      title=" Share link"
                     >
                       Share link <ShareIcon />
                     </Button>
@@ -215,9 +215,10 @@ function UrlShort(props) {
                     <Button
                       variant="contained"
                       color="secondary"
+                      title=" Copy Link to clipboard"
                       onClick={() =>
                         navigator.clipboard.writeText(
-                          `http://localhost:5000/url/${e.shortUrl}`
+                          `https://url-shortener-server-guvi.herokuapp.com/url/${e.shortUrl}`
                         )
                       }
                     >
