@@ -68,11 +68,12 @@ export default function LoginPage() {
       password,
     };
 
-    const API_URL = "https://url-shortener-server-guvi.herokuapp.com/users";
+    const API_URL =
+      "https://url-shortener-server-guvi.herokuapp.com/users/login";
     // const LOCAL_URL = "http://localhost:5000/users/login";
 
     axios
-      .post(`${API_URL}/login`, myData)
+      .post(`${API_URL}`, myData)
       .then((response) => {
         // return  response;
         localStorage.setItem("x-auth-token", JSON.stringify(response.data));
