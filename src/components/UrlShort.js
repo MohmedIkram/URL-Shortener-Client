@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
 /** import from materail ui */
@@ -18,6 +18,8 @@ import TableRow from "@material-ui/core/TableRow";
 import { makeStyles } from "@material-ui/core/styles";
 import { withStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import ShareIcon from "@material-ui/icons/Share";
 
 const useStyles = makeStyles((theme) => ({
   searchcontainer: {
@@ -73,10 +75,13 @@ function UrlShort(props) {
   const UrlData = (e) => setFullUrl(e.target.value);
   const [FullUrl, setFullUrl] = useState();
   const [Data, setData] = useState([]);
-  const history = useHistory();
-  const shortUrl = useLocation();
 
-  console.log(Data.data);
+  // const shortUrl = useParams();
+  // const shortUrldata = useParams();
+  // console.log(shortUrldata);
+  const { shortUrl } = useLocation();
+
+  // console.log(Data.data);
 
   // send fullurl when button is pressed
   async function handleSubmit(e) {
@@ -98,11 +103,12 @@ function UrlShort(props) {
     // console.log(response.data);
   }
 
-  async function OpenShortUrl(e) {
-    await axios.get(
-      `https://url-shortener-server-guvi.herokuapp.com/url/${shortUrl}`
-    );
-  }
+  // async function OpenShortUrl(e) {
+  //   console.log(shortUrl);
+  //   await axios.get(`http://localhost:5000/url${shortUrl}`).then((response) => {
+  //     console.log(response);
+  //   });
+  // }
 
   useEffect(() => {
     handleSubmit();
@@ -155,6 +161,11 @@ function UrlShort(props) {
                   Share
                 </Typography>
               </StyledTableCell>
+              <StyledTableCell align="left">
+                <Typography variant="h5" component="h2">
+                  copy Link
+                </Typography>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -183,7 +194,10 @@ function UrlShort(props) {
                     {e.FullUrl}
                   </StyledTableCell>
                   <StyledTableCell align="right">
-                    <Link href={`${e.FullUrl}`} target="_blank">
+                    <Link
+                      target="_blank"
+                      href={`http://localhost:5000/url/${e.shortUrl}`}
+                    >
                       {e.shortUrl}
                     </Link>
                   </StyledTableCell>
@@ -191,9 +205,23 @@ function UrlShort(props) {
                     <Button
                       variant="contained"
                       color="secondary"
-                      onClick={OpenShortUrl}
+                      target="_blank"
+                      href={`http://localhost:5000/url/${e.shortUrl}`}
                     >
-                      Share link
+                      Share link <ShareIcon />
+                    </Button>
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() =>
+                        navigator.clipboard.writeText(
+                          `http://localhost:5000/url/${e.shortUrl}`
+                        )
+                      }
+                    >
+                      <AssignmentIcon />
                     </Button>
                   </StyledTableCell>
                 </StyledTableRow>

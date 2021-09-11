@@ -113,7 +113,6 @@ export default function LoginPage() {
                 setEmail(e.target.value);
               }}
             />
-            {console.log(email)}
             <TextField
               variant="outlined"
               margin="normal"

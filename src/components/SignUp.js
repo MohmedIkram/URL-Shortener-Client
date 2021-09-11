@@ -69,7 +69,6 @@ export default function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {console.log(name, email, password)}
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
